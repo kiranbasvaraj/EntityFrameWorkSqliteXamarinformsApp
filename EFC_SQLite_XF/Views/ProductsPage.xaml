@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:EFC_SQLite_XF.ViewModels"
+             xmlns:DM="clr-namespace:EFC_SQLite_XF.Models"
+             mc:Ignorable="d"
+             x:Class="EFC_SQLite_XF.Views.ProductsPage">
+    <ContentPage.BindingContext>
+        <vm:ProductsViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame>
+                <StackLayout>
+                    <Entry x:Name="e1"></Entry>
+                    <Entry x:Name="e2"></Entry>
+                    <Button Text="Save"  Clicked="Button_Clicked"></Button>
+                </StackLayout>
+            </Frame>
+            <ListView x:Name="list" ItemsSource="{Binding Items}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.BindingContext>
+                                <DM:ProductsModel/>
+                            </ViewCell.BindingContext>
+                            <StackLayout>
+                                <Label Text="{Binding ProductName}"></Label>
+                                <Label Text="{Binding ProductDescription}"></Label>
+                                <Button Text="Delete" Clicked="Button_Clicked_1"></Button>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
